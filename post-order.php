@@ -72,15 +72,17 @@ function saveCategoryFields($query) {
 }
 add_action ( 'edited_category', 'saveCategoryFields');
 
-function simple_post_order_category_order( $query ) {
+function post_order_category_order( $query ) {
     //get the category id when the archive page is being displayed
-    $category = get_queried_object();
-    $cat_id = $category->term_id;
-    //get the meta value
-    $post_order = get_term_meta($cat_id, 'post-order', true);
+	if (!is_admin() && is_archive()){
+		$category = get_queried_object();
+		$cat_id = $category->term_id;
+		//get the meta value
+		$post_order = get_term_meta($cat_id, 'post-order', true);
     
-    if ( $post_order =='oldest' && $query->is_category($cat_id) && $query->is_main_query() ) {
-        $query->set( 'order', 'ASC' );
-    }
+		if ( $post_order =='oldest' && $query->is_category($cat_id) && $query->is_main_query() ) {
+			$query->set( 'order', 'ASC' );
+		}
+	}
 }
-add_action( 'pre_get_posts', 'simple_post_order_category_order' );
+add_action( 'pre_get_posts', 'post_order_category_order' );
