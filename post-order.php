@@ -28,9 +28,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 =====================================================================================
 */
 
-function changePostOrder(){
+function poc_changePostOrder(){
     //get the category id from the admin url
-    $cat_id = $_GET['tag_ID'];
+    $cat_id = sanitize_text_field($_GET['tag_ID']);
     $post_order = get_term_meta($cat_id, 'post-order', true);
     
     ?>
@@ -49,20 +49,14 @@ function changePostOrder(){
     <?php
     
 }
-add_action ( 'edit_category_form_fields', 'changePostOrder');
+add_action ( 'edit_category_form_fields', 'poc_changePostOrder');
 
-function saveCategoryFields($query) {
+function poc_saveCategoryFields($query) {
     //get the category id from the admin url
-    $cat_id = $_POST['tag_ID'];
+    $cat_id = sanitize_text_field($_POST['tag_ID']);
     //check if the user is an admin or an editor
     if(current_user_can( 'manage_categories' ) && isset( $_POST['post-order'] )){
-        if ($_POST['post-order'] == 'oldest')  {
-            //add meta value in wp_termmeta table
-            //update field
-            $order = sanitize_title( $_POST['post-order'] );
-            update_term_meta($cat_id, 'post-order', $order); 
-        }
-        else if ($_POST['post-order'] == 'newest')  {
+        if ($_POST['post-order'] == 'oldest' || $_POST['post-order'] == 'newest' )  {
             //add meta value in wp_termmeta table
             //update field
             $order = sanitize_title( $_POST['post-order'] );
@@ -70,9 +64,9 @@ function saveCategoryFields($query) {
         }
     }
 }
-add_action ( 'edited_category', 'saveCategoryFields');
+add_action ( 'edited_category', 'poc_saveCategoryFields');
 
-function post_order_category_order( $query ) {
+function poc_category_order( $query ) {
     //get the category id when the archive page is being displayed
 	if (!is_admin() && is_archive()){
 		$category = get_queried_object();
@@ -85,4 +79,4 @@ function post_order_category_order( $query ) {
 		}
 	}
 }
-add_action( 'pre_get_posts', 'post_order_category_order' );
+add_action( 'pre_get_posts', 'poc_category_order' );
