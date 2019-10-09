@@ -3,7 +3,7 @@
  * Plugin Name: Post Order By Category
  * Plugin URI: https://github.com/yonkov/Post-Order-By-Category
  * Description: A lightweight plugin that adds the option to reverse the post order for a specific category to be date ascending. When creating or editing a category from the Admin Dashboard, the user can choose to sort the posts for that category by oldest or newest (default WordPress sort). Useful for journals, books or achives, who need to have a chronological sort order for certain category archive's pages.
- * Version: 1.0
+ * Version: 1.02
  * Author: Atanas Yonkov
  * Author URI: https://yonkov.github.io/
  * Tags: post order, chronological, reverse post order
