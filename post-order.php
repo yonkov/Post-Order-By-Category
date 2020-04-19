@@ -3,14 +3,14 @@
  * Plugin Name: Post Order By Category
  * Plugin URI: https://github.com/yonkov/Post-Order-By-Category
  * Description: A lightweight plugin that adds the option to reverse the post order for a specific category to be date ascending. When creating or editing a category from the Admin Dashboard, the user can choose to sort the posts for that category by oldest or newest (default WordPress sort). Useful for journals, books or achives, who need to have a chronological sort order for certain category archive's pages.
- * Version: 1.02
+ * Version: 1.04
  * Author: Atanas Yonkov
  * Author URI: https://yonkov.github.io/
  * Tags: post order, chronological, reverse post order
  * License: GPL
 
 =====================================================================================
-Copyright (C) 2019 Atanas Yonkov
+Copyright (C) 2019-present Atanas Yonkov
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -49,7 +49,7 @@ function poc_changePostOrder(){
     <?php
     
 }
-add_action ( 'edit_category_form_fields', 'poc_changePostOrder');
+add_action ( 'category_edit_form_fields', 'poc_changePostOrder');
 
 function poc_saveCategoryFields($query) {
     //get the category id from the admin url
@@ -68,14 +68,15 @@ add_action ( 'edited_category', 'poc_saveCategoryFields');
 
 function poc_category_order( $query ) {
     //get the category id when the archive page is being displayed
-	if (!is_admin() && is_archive()){
+	if (!is_admin() && is_category()){
 		$category = get_queried_object();
-		$cat_id = $category->term_id;
-		//get the meta value
-		$post_order = get_term_meta($cat_id, 'post-order', true);
-    
-		if ( $post_order =='oldest' && $query->is_category($cat_id) && $query->is_main_query() ) {
-			$query->set( 'order', 'ASC' );
+		if(!empty($category)){
+			$cat_id = $category->term_id;
+			//get the meta value
+			$post_order = get_term_meta($cat_id, 'post-order', true);
+			if ( $post_order =='oldest' && $query->is_category($cat_id) && $query->is_main_query() ) {
+				$query->set( 'order', 'ASC' );
+			}
 		}
 	}
 }
