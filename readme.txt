@@ -36,6 +36,7 @@ Yes, since version 1.03, you can reverse post order for category archive pages t
 			return $query;
 		}
 	}
+	add_filter('pre_get_posts', 'my_custom_query_post_type');
 	
 If you are using the CPT UI plugin to create custom post types, you would also need to go to Edit post types>Taxonomies and put a tick on "Categories". Check this [article](https://www.wpbeginner.com/wp-tutorials/how-to-add-categories-to-a-custom-post-type-in-wordpress/) if you need more information how to set up categories on custom post types.
 
