@@ -6,8 +6,9 @@ Tags: post order, chronological, reverse post order
 Author URI: https://yonkov.github.io/
 Author: Atanas Yonkov
 Requires at least: 4.4
-Tested up to: 5.4
-Stable tag: 1.04
+Requires PHP: 5.2.4
+Tested up to: 5.8
+Stable tag: 1.05
 Description: A lightweight plugin that adds the option to reverse the post order for a specified category to be date ascending. When creating or editing a category from the Admin Dashboard, the user can choose to sort the posts for that category by oldest or newest (default WordPress sort). Useful for journals, books or achives, who need to have a chronological sort order for certain category archive's pages.
 License: GPLv2
 
@@ -27,16 +28,15 @@ When you choose "Oldest", the plugin will automatically display the posts from t
 The plugin currently does not have any more options. However, it can be forked to sort posts by other criteria, including post title. It can also be adjusted to sort posts by more than one criteria. For more information on how to do it, feel free to check this [article](https://yonkov.github.io/post/change-post-order-for-a-specific-category-in-wordpress/) or contact me directly! The plugin does exactly what it states it does. If you like it, please give it a 5-star rating.
 
 = Is there support for custom post types?
-Yes, since version 1.03, you can reverse post order for category archive pages that belong to custom post types, e.g. projects or portfolio, as long as the custom post type supports post categories. This plugin works with [Custom Post Type UI](https://wordpress.org/plugins/custom-post-type-ui/) plugin. However, WordPress does not support category archives for custom post types by default. To display category archive page for category "awesome-projects" for custom post type "project", you need to add the following code in your child theme's functions.php:
+Yes, since version 1.03, you can reverse post order for category archive pages that belong to custom post types, e.g. projects or portfolio, as long as the custom post type supports post categories. This plugin works with [Custom Post Type UI](https://wordpress.org/plugins/custom-post-type-ui/) plugin. However, WordPress does not support category archives by default. To display category archive page for category "awesome-projects" for custom post type "project", you need to add the following code in your child theme's functions.php:
 
 	function my_custom_query_post_type($query) {
 		if ( is_category() && ( ! isset( $query->query_vars['suppress_filters'] ) || false == $query->query_vars['suppress_filters'] ) ) {
-			//replace project and movie with your custom post type name (can be also registered as plural)
+			//replace project and movie with your custom post type name
 			$query->set( 'post_type', array( 'post', 'project', 'movie' ) );
 			return $query;
 		}
 	}
-	add_filter('pre_get_posts', 'my_custom_query_post_type');
 	
 If you are using the CPT UI plugin to create custom post types, you would also need to go to Edit post types>Taxonomies and put a tick on "Categories". Check this [article](https://www.wpbeginner.com/wp-tutorials/how-to-add-categories-to-a-custom-post-type-in-wordpress/) if you need more information how to set up categories on custom post types.
 
@@ -55,6 +55,8 @@ First release in WordPress repo.
 Fix php notices on 404 pages. Add support to custom post types.
 = 1.04 =
 Fix deprecation notice in wp-admin. Add support to Custom Post Type UI plugin and update docs.
+= 1.0.5 =
+Improve localization support
 
 == Screenshots ==
 
