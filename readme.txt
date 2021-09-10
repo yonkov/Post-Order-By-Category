@@ -41,22 +41,23 @@ Yes, since version 1.03, you can reverse post order for category archive pages t
 If you are using the CPT UI plugin to create custom post types, you would also need to go to Edit post types>Taxonomies and put a tick on "Categories". Check this [article](https://www.wpbeginner.com/wp-tutorials/how-to-add-categories-to-a-custom-post-type-in-wordpress/) if you need more information how to set up categories on custom post types.
 
 == Changelog ==
-= 1.0 =
-* First publicly available version of the plugin.
-
-== Upgrade Notice ==
-= 1.0 =
-Initial release.
-= 1.01 =
-Sanitized input and output.
-= 1.02 =
-First release in WordPress repo.
-= 1.03 =
-Fix php notices on 404 pages. Add support to custom post types.
-= 1.04 =
-Fix deprecation notice in wp-admin. Add support to Custom Post Type UI plugin and update docs.
 = 1.0.5 =
 Improve localization support
+
+= 1.04 =
+Fix deprecation notice in wp-admin. Add support to Custom Post Type UI plugin and update docs.
+
+= 1.03 =
+Fix php notices on 404 pages. Add support to custom post types.
+
+= 1.02 =
+First release in WordPress repo.
+
+= 1.01 =
+Sanitized input and output.
+
+= 1.0 =
+* First publicly available version of the plugin.
 
 == Screenshots ==
 
