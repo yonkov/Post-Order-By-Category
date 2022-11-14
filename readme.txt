@@ -7,7 +7,7 @@ Author URI: https://yonkov.github.io/
 Author: Atanas Yonkov
 Requires at least: 4.4
 Requires PHP: 5.2.4
-Tested up to: 5.9
+Tested up to: 6.1
 Stable tag: 1.05
 Description: A lightweight plugin that adds the option to reverse the post order for a specified category to be date ascending. When creating or editing a category from the Admin Dashboard, the user can choose to sort the posts for that category by oldest or newest (default WordPress sort). Useful for journals, books or achives, who need to have a chronological sort order for certain category archive's pages.
 License: GPLv2
